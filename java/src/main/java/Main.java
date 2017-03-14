@@ -1,25 +1,24 @@
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) {
 
-        String liczba = "2+53*4/2";
-
-        /*
-        mnożenie
-            dzielenie
-                dodawanie
-                        odejmowanie
-                        */
+        String liczba = "2+3*4/2";
 
         StringTokenizer Elements = new StringTokenizer(liczba, "+-*/^", true);
 
         System.out.println("Total tokens : " + Elements.countTokens());
 
-        int[] values = new int[100];
+        ArrayList<String> lista = new ArrayList<String>();
 
         while (Elements.hasMoreElements()) {
-            System.out.println(Elements.nextElement());
+            lista.add(Elements.nextToken());
+            //System.out.println(Elements.nextElement());
+        }
+
+        for (String elem : lista) {
+            System.out.println(elem + "  ");
         }
 
 //isNumber

@@ -22,7 +22,7 @@ public class Operatory {
     }
 
     double square(double a, int n) {
-        return Math.sqrt(a);
+        return Math.sqrt(a); //TODO: DODA n
     }
 
     double exponentiation(double a, int n) {
