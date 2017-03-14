@@ -20,8 +20,8 @@ public class Main {
 
         groovy.util.Eval.me("4*5");
 
-        assert Eval.me(' 2 * 4 + 2') == 10
-        assert Eval.x(2, ' x * 4 + 2') == 10
+        assert Eval.me(' 2 * 4 + 2');// == 10
+        assert Eval.x(2, ' x * 4 + 2');// == 10
 
 
 //isNumber
