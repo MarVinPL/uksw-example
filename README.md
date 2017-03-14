@@ -1,5 +1,21 @@
 # uksw-example
 
+Pomysł:
+Zgodnie z założeniami pobieram stringa
+po wykonaniu działania chce podmienić obliczana wartość na rozwiązanie 
+i tak dopuki nie powstanie 1 Element
+
+
+Działania zgodnie z kolejnością:
+- działania w nawiasach
+- potęgowanie i pierwiastkowanie
+- mnożenie i dzielenie
+- dodawanie i odejmowanie
+
+
+Wszystko na double
+
+
 Już czas wykorzystać naszą wiedzę i stworzyć swój pierwszy mini projekt. Mało tego! Wykorzystamy tutaj wszystkie narzędzia - które poznaliśmy oraz nauczymy się korzystać z dobrodziejstw Internetu by nauczyć się radzić samemu gdy nie wiemy jak dany problem osiągnąć.
 Napisać projekt: KALKULATOR, który będzie operował w linii komend.
 1) Po uruchomieniu programu pojawi się menu gdzie będzie można przejść do trybu obliczeń pisanych w linii komend:
