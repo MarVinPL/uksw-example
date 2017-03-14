@@ -5,7 +5,11 @@ public class Main {
 
         String liczba = "2+53";
 
-        StringTokenizer(liczba, "+-*/", true)
+        StringTokenizer str2 = new StringTokenizer(liczba, "+-*/", true);
+
+        while (str2.hasMoreElements()) {
+            System.out.println(str2.nextElement());
+        }
 
 //isNumber
     }
