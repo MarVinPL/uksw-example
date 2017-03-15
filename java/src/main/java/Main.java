@@ -22,7 +22,7 @@ public class Main {
                     do {
 
                         liniaR = scanner.nextLine();
-                        if (!liniaR.toString().isEmpty())
+                        if (!liniaR.toString().isEmpty() && !liniaR.endsWith("end"))
                             System.out.println(liniaR + "=" + s.algo(liniaR));
 
                     } while (!liniaR.endsWith("end"));
