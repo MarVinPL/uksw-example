@@ -1,5 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.PrintWriter;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -10,8 +9,15 @@ public class Main {
         System.out.println("");
         System.out.println("");
 
-        String filePath = "src/test.txt";
+        //String filePath = "test2.txt";
 
+
+        PrintWriter zapis = new PrintWriter("ala.txt");
+        zapis.println("Ala ma kota, a kot ma Alę");
+        zapis.close();
+
+
+        /*
                 FileReader fileReader = new FileReader(filePath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -23,7 +29,7 @@ public class Main {
         } while (textLine != null);
 
         bufferedReader.close();
-
+*/
 
 
     }
