@@ -11,6 +11,9 @@ public class Split extends Operatory {
 
         String[] PossibleAction = {"*", "/", "+", "-"};
 
+        eq.replaceAll("\\s+", "");
+        eq.replaceAll("\\s", "");
+
         StringTokenizer Elements = new StringTokenizer(eq, "+-*/", true);
 
         ArrayList<String> lista = new ArrayList<String>();
