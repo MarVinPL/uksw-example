@@ -9,7 +9,7 @@ public class Split {
 
     Split(String eq) {
         String before = eq;
-        String after;
+        String after = "kupa";
 
         StringTokenizer Elements = new StringTokenizer(before, "+-*/^", true);
 
@@ -24,7 +24,7 @@ public class Split {
 
         for (String element : lista) {
 
-            element.equals('*');
+            element.equals("*");
             element.equals('/');
             element.equals('+');
             element.equals('-');
