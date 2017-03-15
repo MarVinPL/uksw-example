@@ -80,17 +80,26 @@ public class Main {
         String[] PossibleAction = {"*", "/", "+", "-"};
 
         for (String A : PossibleAction) {
-            for (int i = 0; i < lista.size(); i++) {
-                if (lista.get(i).equals("+")) {
-                    double a = Double.parseDouble(lista.get(i - 1));
-                    double b = Double.parseDouble(lista.get(i + 1));
+            rev = lista.indexOf(A);
+            System.out.println("Index: " + rev + " of: " + A);
+            while (rev != -1) {
+                //rev = lista.indexOf(A);
+                double a = Double.parseDouble(lista.get(rev - 1));
+                double b = Double.parseDouble(lista.get(rev + 1));
                     double tmp = a + b;
                     String eq = String.valueOf(tmp);
-                    lista.set(i, eq);
-                    lista.remove(i + 1);
-                    lista.remove(i - 1);
-                }
+                lista.set(rev, eq);
+                lista.remove(rev + 1);
+                lista.remove(rev - 1);
+
             }
+        }
+
+        System.out.println("");
+        System.out.println("");
+
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println(lista.get(i));
         }
 
 //isNumber
