@@ -36,7 +36,7 @@ public class Split extends Operatory {
 
                 double a = Double.parseDouble(lista.get(rev - 1));
                 double b = Double.parseDouble(lista.get(rev + 1));
-
+//TODO: KTÓRE LEPRZE
                 Double temp = Double.valueOf(lista.get(rev - 1));
                 a = temp.doubleValue();
                 temp = Double.valueOf(lista.get(rev + 1));
