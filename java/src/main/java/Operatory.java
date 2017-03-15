@@ -13,20 +13,20 @@ public class Operatory {
     }
 
     double multiplication(double a, double b) {
-        return a * b;
+        return (float) a * (float) b;
     }
 
     double division(double a, double b) {
         //ORDER MATTERS
-        return a / 2;
+        return (float) a / (float) b;
     }
 
     double square(double a, int n) {
-        return Math.sqrt(a); //TODO: DODA n
+        return Math.sqrt((float) a); //TODO: DODA n
     }
 
     double exponentiation(double a, int n) {
-        return Math.pow(a, n);
+        return Math.pow((float) a, n);
     }
 
 }
