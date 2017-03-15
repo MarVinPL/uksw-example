@@ -18,10 +18,17 @@ public class Split extends Operatory {
 
         ArrayList<String> lista = new ArrayList<String>();
 
+        int i = 0;
         while (Elements.hasMoreElements()) {
-            lista.add(Elements.nextToken());
-            //System.out.println(Elements.nextElement());
+            String token = Elements.nextToken();
+            if (i == 0) {
+                if (token.equals("-"))
+                    lista.add(String.valueOf(0));
+            }
+            i++;
+            lista.add(token);
         }
+
         int x = 0;
         for (String A : PossibleAction) {
             while (lista.contains(A)) {

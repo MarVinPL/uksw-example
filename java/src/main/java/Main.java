@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Scanner;
 
 public class Main {
@@ -20,34 +22,24 @@ public class Main {
                     do {
 
                         liniaR = scanner.nextLine();
-                        liniaR.toString().isEmpty();
-                        //System.out.println(liniaR);
-                        //if(liniaR=="")
-                        //System.out.println(liniaR+"=");//+s.algo(liniaR));
+                        if (!liniaR.toString().isEmpty())
+                            System.out.println(liniaR + "=" + s.algo(liniaR));
 
                     } while (!liniaR.endsWith("end"));
                     //MENU
                     break;
                 case 2:
-                    System.out.println("2");
-                    //MENU
+                    String filePath = "algo.txt";
+
+                    FileReader fileReader = new FileReader(filePath);
+                    BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+                    while ((linia = bufferedReader.readLine()) != null) {
+                        System.out.println(linia + "=" + s.algo(linia));
+                    }
                     break;
             }
 
         } while (select != 4);
-
-/*
-        String filePath = "test.txt";
-
-                FileReader fileReader = new FileReader(filePath);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-        while((linia = bufferedReader.readLine()) != null){
-                System.out.println(linia+"="+s.algo(linia));
-            }
-
-        //s.algo();
-*/
-
     }
 }
