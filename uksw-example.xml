@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="uksw-example" default="all">
+
+
+    <property file="uksw-example.properties"/>
+    <!-- Uncomment the following property if no tests compilation is needed -->
+    <!--
+    <property name="skip.tests" value="true"/>
+     -->
+
+    <!-- Compiler options -->
+
+    <property name="compiler.debug" value="on"/>
+    <property name="compiler.generate.no.warnings" value="off"/>
+    <property name="compiler.args" value=""/>
+    <property name="compiler.max.memory" value="700m"/>
+    <patternset id="ignored.files">
+        <exclude name="**/*.hprof/**"/>
+        <exclude name="**/*.pyc/**"/>
+        <exclude name="**/*.pyo/**"/>
+        <exclude name="**/*.rbc/**"/>
+        <exclude name="**/*.yarb/**"/>
+        <exclude name="**/*~/**"/>
+        <exclude name="**/.DS_Store/**"/>
+        <exclude name="**/.git/**"/>
+        <exclude name="**/.hg/**"/>
+        <exclude name="**/.svn/**"/>
+        <exclude name="**/CVS/**"/>
+        <exclude name="**/__pycache__/**"/>
+        <exclude name="**/_svn/**"/>
+        <exclude name="**/vssver.scc/**"/>
+        <exclude name="**/vssver2.scc/**"/>
+    </patternset>
+    <patternset id="library.patterns">
+        <include name="*.war"/>
+        <include name="*.swc"/>
+        <include name="*.zip"/>
+        <include name="*.egg"/>
+        <include name="*.ane"/>
+        <include name="*.jar"/>
+        <include name="*.ear"/>
+    </patternset>
+    <patternset id="compiler.resources">
+        <exclude name="**/?*.java"/>
+        <exclude name="**/?*.form"/>
+        <exclude name="**/?*.class"/>
+        <exclude name="**/?*.groovy"/>
+        <exclude name="**/?*.scala"/>
+        <exclude name="**/?*.flex"/>
+        <exclude name="**/?*.kt"/>
+        <exclude name="**/?*.clj"/>
+        <exclude name="**/?*.aj"/>
+    </patternset>
+
+    <!-- JDK definitions -->
+
+    <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+    <path id="jdk.classpath.1.8">
+        <fileset dir="${jdk.home.1.8}">
+            <include name="jre/lib/charsets.jar"/>
+            <include name="jre/lib/deploy.jar"/>
+            <include name="jre/lib/ext/access-bridge-64.jar"/>
+            <include name="jre/lib/ext/cldrdata.jar"/>
+            <include name="jre/lib/ext/dnsns.jar"/>
+            <include name="jre/lib/ext/jaccess.jar"/>
+            <include name="jre/lib/ext/jfxrt.jar"/>
+            <include name="jre/lib/ext/localedata.jar"/>
+            <include name="jre/lib/ext/nashorn.jar"/>
+            <include name="jre/lib/ext/sunec.jar"/>
+            <include name="jre/lib/ext/sunjce_provider.jar"/>
+            <include name="jre/lib/ext/sunmscapi.jar"/>
+            <include name="jre/lib/ext/sunpkcs11.jar"/>
+            <include name="jre/lib/ext/zipfs.jar"/>
+            <include name="jre/lib/javaws.jar"/>
+            <include name="jre/lib/jce.jar"/>
+            <include name="jre/lib/jfr.jar"/>
+            <include name="jre/lib/jfxswt.jar"/>
+            <include name="jre/lib/jsse.jar"/>
+            <include name="jre/lib/management-agent.jar"/>
+            <include name="jre/lib/plugin.jar"/>
+            <include name="jre/lib/resources.jar"/>
+            <include name="jre/lib/rt.jar"/>
+        </fileset>
+    </path>
+
+    <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+    <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+    <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+    <!-- Register Custom Compiler Taskdefs -->
+    <property name="javac2.home" value="${idea.home}/lib"/>
+    <path id="javac2.classpath">
+        <pathelement location="${javac2.home}/javac2.jar"/>
+        <pathelement location="${javac2.home}/jdom.jar"/>
+        <pathelement location="${javac2.home}/asm-all.jar"/>
+        <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+    </path>
+    <target name="register.custom.compilers">
+        <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+        <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions"
+                 classpathref="javac2.classpath"/>
+    </target>
+
+    <!-- Modules -->
+
+
+    <!-- Module java -->
+
+    <dirname property="module.java.basedir" file="${ant.file}"/>
+
+
+    <property name="module.jdk.home.java" value="${jdk.home.1.8}"/>
+    <property name="module.jdk.bin.java" value="${jdk.bin.1.8}"/>
+    <property name="module.jdk.classpath.java" value="jdk.classpath.1.8"/>
+
+    <property name="compiler.args.java" value="-encoding UTF-8 -source 1.5 -target 1.8 ${compiler.args}"/>
+
+    <property name="java.output.dir" value="${module.java.basedir}/java/target/classes"/>
+    <property name="java.testoutput.dir" value="${module.java.basedir}/java/target/test-classes"/>
+
+    <path id="java.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="java.module.production.classpath">
+        <path refid="${module.jdk.classpath.java}"/>
+    </path>
+
+    <path id="java.runtime.production.module.classpath">
+        <pathelement location="${java.output.dir}"/>
+    </path>
+
+    <path id="java.module.classpath">
+        <path refid="${module.jdk.classpath.java}"/>
+        <pathelement location="${java.output.dir}"/>
+    </path>
+
+    <path id="java.runtime.module.classpath">
+        <pathelement location="${java.testoutput.dir}"/>
+        <pathelement location="${java.output.dir}"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.java">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.java">
+        <patternset refid="excluded.from.module.java"/>
+    </patternset>
+
+    <path id="java.module.sourcepath">
+        <dirset dir="${module.java.basedir}/java">
+            <include name="src/main/java"/>
+            <include name="src/main/resources"/>
+        </dirset>
+    </path>
+
+    <path id="java.module.test.sourcepath">
+        <dirset dir="${module.java.basedir}/java">
+            <include name="src/test/java"/>
+        </dirset>
+    </path>
+
+
+    <target name="compile.module.java" depends="compile.module.java.production,compile.module.java.tests"
+            description="Compile module java"/>
+
+    <target name="compile.module.java.production" depends="register.custom.compilers"
+            description="Compile module java; production classes">
+        <mkdir dir="${java.output.dir}"/>
+        <javac2 destdir="${java.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
+                memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.java}/javac">
+            <compilerarg line="${compiler.args.java}"/>
+            <bootclasspath refid="java.module.bootclasspath"/>
+            <classpath refid="java.module.production.classpath"/>
+            <src refid="java.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.java"/>
+        </javac2>
+
+        <copy todir="${java.output.dir}">
+            <fileset dir="${module.java.basedir}/java/src/main/java">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+            <fileset dir="${module.java.basedir}/java/src/main/resources">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.module.java.tests" depends="register.custom.compilers,compile.module.java.production"
+            description="compile module java; test classes" unless="skip.tests">
+        <mkdir dir="${java.testoutput.dir}"/>
+        <javac2 destdir="${java.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
+                memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.java}/javac">
+            <compilerarg line="${compiler.args.java}"/>
+            <bootclasspath refid="java.module.bootclasspath"/>
+            <classpath refid="java.module.classpath"/>
+            <src refid="java.module.test.sourcepath"/>
+            <patternset refid="excluded.from.compilation.java"/>
+        </javac2>
+
+        <copy todir="${java.testoutput.dir}">
+            <fileset dir="${module.java.basedir}/java/src/test/java">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="clean.module.java" description="cleanup module">
+        <delete dir="${java.output.dir}"/>
+        <delete dir="${java.testoutput.dir}"/>
+    </target>
+
+
+    <!-- Module uksw-example -->
+
+    <dirname property="module.uksw-example.basedir" file="${ant.file}"/>
+
+
+    <property name="module.jdk.home.uksw-example" value="${jdk.home.1.8}"/>
+    <property name="module.jdk.bin.uksw-example" value="${jdk.bin.1.8}"/>
+    <property name="module.jdk.classpath.uksw-example" value="jdk.classpath.1.8"/>
+
+    <property name="compiler.args.uksw-example" value="-encoding UTF-8 -source 1.3 -target 1.3 ${compiler.args}"/>
+
+    <property name="uksw-example.output.dir" value="undefined"/>
+    <property name="uksw-example.testoutput.dir" value="undefined"/>
+
+    <path id="uksw-example.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="uksw-example.module.production.classpath">
+        <path refid="${module.jdk.classpath.uksw-example}"/>
+    </path>
+
+    <path id="uksw-example.runtime.production.module.classpath"/>
+
+    <path id="uksw-example.module.classpath">
+        <path refid="${module.jdk.classpath.uksw-example}"/>
+    </path>
+
+    <path id="uksw-example.runtime.module.classpath"/>
+
+
+    <patternset id="excluded.from.module.uksw-example">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.uksw-example">
+        <patternset refid="excluded.from.module.uksw-example"/>
+    </patternset>
+
+
+    <target name="compile.module.uksw-example"
+            depends="compile.module.uksw-example.production,compile.module.uksw-example.tests"
+            description="Compile module uksw-example"/>
+
+    <target name="compile.module.uksw-example.production" depends="register.custom.compilers"
+            description="Compile module uksw-example; production classes"/>
+
+    <target name="compile.module.uksw-example.tests"
+            depends="register.custom.compilers,compile.module.uksw-example.production"
+            description="compile module uksw-example; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.uksw-example" description="cleanup module">
+        <delete dir="${uksw-example.output.dir}"/>
+        <delete dir="${uksw-example.testoutput.dir}"/>
+    </target>
+
+    <target name="init" description="Build initialization">
+        <!-- Perform any build initialization in this target -->
+    </target>
+
+    <target name="clean" depends="clean.module.java, clean.module.uksw-example" description="cleanup all"/>
+
+    <target name="build.modules" depends="init, clean, compile.module.java, compile.module.uksw-example"
+            description="build all modules"/>
+
+    <target name="all" depends="build.modules" description="build all"/>
+</project>

@@ -7,11 +7,14 @@ import java.util.StringTokenizer;
 
 public class Split {
 
-    Split(String eq) {
-        String before = eq;
-        String after = "kupa";
+    String eq;
 
-        StringTokenizer Elements = new StringTokenizer(before, "+-*/^", true);
+    String Split(String eq) {
+        Operatory Operator = new Operatory();
+
+        String[] PossibleAction = {"*", "/", "+", "-"};
+
+        StringTokenizer Elements = new StringTokenizer(eq, "+-*/^", true);
 
         System.out.println("Total tokens : " + Elements.countTokens());
 
@@ -19,22 +22,28 @@ public class Split {
 
         while (Elements.hasMoreElements()) {
             lista.add(Elements.nextToken());
-            //System.out.println(Elements.nextElement());
         }
 
-        for (String element : lista) {
+        String Action;
+        int Index = 0;
 
-            element.equals("*");
-            element.equals('/');
-            element.equals('+');
-            element.equals('-');
-
+        for (String A : PossibleAction) {
+            for (int i = 0; i < lista.size(); i++) {
+                //if(element.equals("*"))
+                if (lista.get(i).equals(A)) {
+                    Action = A;
+                    Index = i;
+                }
+                if (Index != 0) {
+                    break;
+                }
+            }
         }
 
+        //TODO: będzie liczyło w pętli dopuki Index!=0
+        //TODO: jak Index==0 to zwraca wynik
 
-        eq.replace(before, after);
+        return eq;
     }
-    //StringTokenizer Elements = new StringTokenizer(liczba, "+-*/^", true);
-    //Elements.countTokens();//ilość elementów
 
 }

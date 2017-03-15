@@ -41,6 +41,32 @@ public class Main {
         }
 
         for (int i = 0; i < lista.size(); i++) {
+            //if(element.equals("*"))
+            if (lista.get(i).equals("/")) {
+                double a = Double.parseDouble(lista.get(i - 1));
+                double b = Double.parseDouble(lista.get(i + 1));
+                double tmp = a / b;
+                String eq = String.valueOf(tmp);
+                lista.set(i, eq);
+                lista.remove(i + 1);
+                lista.remove(i - 1);
+            }
+        }
+
+        for (int i = 0; i < lista.size(); i++) {
+            //if(element.equals("*"))
+            if (lista.get(i).equals("+")) {
+                double a = Double.parseDouble(lista.get(i - 1));
+                double b = Double.parseDouble(lista.get(i + 1));
+                double tmp = a + b;
+                String eq = String.valueOf(tmp);
+                lista.set(i, eq);
+                lista.remove(i + 1);
+                lista.remove(i - 1);
+            }
+        }
+
+        for (int i = 0; i < lista.size(); i++) {
             System.out.println(lista.get(i));
         }
 
