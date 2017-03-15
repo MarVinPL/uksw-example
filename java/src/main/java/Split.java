@@ -5,46 +5,50 @@
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class Split {
+public class Split extends Operatory {
 
-    String eq;
-
-    String Split(String eq) {
-        Operatory Operator = new Operatory();
+    String algo(String eq) {
 
         String[] PossibleAction = {"*", "/", "+", "-"};
 
-        StringTokenizer Elements = new StringTokenizer(eq, "+-*/^", true);
-
-        System.out.println("Total tokens : " + Elements.countTokens());
+        StringTokenizer Elements = new StringTokenizer(eq, "+-*/", true);
 
         ArrayList<String> lista = new ArrayList<String>();
 
         while (Elements.hasMoreElements()) {
             lista.add(Elements.nextToken());
+            //System.out.println(Elements.nextElement());
         }
-
-        String Action;
-        int Index = 0;
-
+        int x = 0;
         for (String A : PossibleAction) {
-            for (int i = 0; i < lista.size(); i++) {
-                //if(element.equals("*"))
-                if (lista.get(i).equals(A)) {
-                    Action = A;
-                    Index = i;
+            while (lista.contains(A)) {
+                int rev = lista.indexOf(A);
+                System.out.print("Index: " + rev + " of: " + A);
+                double a = Double.parseDouble(lista.get(rev - 1));
+                double b = Double.parseDouble(lista.get(rev + 1));
+                System.out.println(" = " + x);
+                double r = 0;
+                switch (x) {
+                    case 0:
+                        r = multiplication(a, b);
+                        break;
+                    case 1:
+                        r = division(a, b);
+                        break;
+                    case 2:
+                        r = addition(a, b);
+                        break;
+                    case 3:
+                        r = subtraction(a, b);
+                        break;
                 }
-                if (Index != 0) {
-                    break;
-                }
+                eq = String.valueOf(r);
+                lista.set(rev, eq);
+                lista.remove(rev + 1);
+                lista.remove(rev - 1);
             }
+            x++;
         }
-
-        //TODO: będzie liczyło w pętli dopuki Index!=0
-        //TODO: jak Index==0 to zwraca wynik
-
-        //TODO: Na tym etapie nie uwzględniam nawiasów bo będzie to poporostu traktowane jako fragment stringa z pryiorytetem ale to potem
-
         return eq;
     }
 
