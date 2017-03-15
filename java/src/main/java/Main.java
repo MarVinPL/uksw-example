@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) {
 
-        String liczba = "3/2+3*4/2";
+        String liczba = "3/2+3*4/2-1";
 
         StringTokenizer Elements = new StringTokenizer(liczba, "+-*/", true);
 
@@ -26,46 +26,7 @@ public class Main {
 
         System.out.println("");
         System.out.println("");
-/*
-        for (int i = 0; i < lista.size(); i++) {
-            //if(element.equals("*"))
-            if (lista.get(i).equals("*")) {
-                double a = Double.parseDouble(lista.get(i - 1));
-                double b = Double.parseDouble(lista.get(i + 1));
-                double tmp = a * b;
-                String eq = String.valueOf(tmp);
-                lista.set(i, eq);
-                lista.remove(i + 1);
-                lista.remove(i - 1);
-            }
-        }
 
-        for (int i = 0; i < lista.size(); i++) {
-            //if(element.equals("*"))
-            if (lista.get(i).equals("/")) {
-                double a = Double.parseDouble(lista.get(i - 1));
-                double b = Double.parseDouble(lista.get(i + 1));
-                double tmp = a / b;
-                String eq = String.valueOf(tmp);
-                lista.set(i, eq);
-                lista.remove(i + 1);
-                lista.remove(i - 1);
-            }
-        }
-
-        for (int i = 0; i < lista.size(); i++) {
-            //if(element.equals("*"))
-            if (lista.get(i).equals("+")) {
-                double a = Double.parseDouble(lista.get(i - 1));
-                double b = Double.parseDouble(lista.get(i + 1));
-                double tmp = a + b;
-                String eq = String.valueOf(tmp);
-                lista.set(i, eq);
-                lista.remove(i + 1);
-                lista.remove(i - 1);
-            }
-        }
-*/
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(lista.get(i));
         }
@@ -79,20 +40,27 @@ public class Main {
 
         String[] PossibleAction = {"*", "/", "+", "-"};
 
+        Operatory o = new Operatory();
+        int x = 0;
         for (String A : PossibleAction) {
-            rev = lista.indexOf(A);
-            System.out.println("Index: " + rev + " of: " + A);
-            while (rev != -1) {
-                //rev = lista.indexOf(A);
+            while (lista.contains(A)) {
+                System.out.print("Index: " + rev + " of: " + A);
+                rev = lista.indexOf(A);
                 double a = Double.parseDouble(lista.get(rev - 1));
                 double b = Double.parseDouble(lista.get(rev + 1));
+                System.out.println(" = " + x);
+                o.addition();
+                o.subtraction();
+                o.multiplication();
+                o.division();
                     double tmp = a + b;
-                    String eq = String.valueOf(tmp);
+
+                String eq = String.valueOf(tmp);
                 lista.set(rev, eq);
                 lista.remove(rev + 1);
                 lista.remove(rev - 1);
-
             }
+            x++;
         }
 
         System.out.println("");
