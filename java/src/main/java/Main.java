@@ -3,6 +3,12 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 public class Main {
+    /**
+     * PROSTE MENU
+     * 1 - Wprowadzaj ręcznia
+     * 2 - Zpliku algo.txt
+     * 4 - KONIEC
+     */
     public static void main(String[] args) throws Exception {
 
         int select;
