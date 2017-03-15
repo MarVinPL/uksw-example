@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="unnamed">
-    <output-path>$PROJECT_DIR$/out/artifacts/unnamed</output-path>
-    <root id="archive" name="unnamed.jar">
+  <artifact type="jar" name="kalkulator">
+    <output-path>$PROJECT_DIR$/out/artifacts/kalkulator</output-path>
+    <root id="archive" name="kalkulator.jar">
       <element id="module-output" name="java" />
       <element id="module-output" name="uksw-example" />
       <element id="directory" name="META-INF">

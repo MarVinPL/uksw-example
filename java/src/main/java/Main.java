@@ -13,9 +13,10 @@ public class Main {
             System.out.println("1 - Wprowadzaj ręcznia");
             System.out.println("2 - Zpliku algo.txt");
             System.out.println("4 - KONIEC");
+            System.out.print("Co robić: ");
             select = scanner.nextInt();
             String linia;
-
+            System.out.println("");
             switch (select) {
                 case 1:
                     String liniaR;
@@ -23,7 +24,7 @@ public class Main {
 
                         liniaR = scanner.nextLine();
                         if (!liniaR.toString().isEmpty() && !liniaR.endsWith("end"))
-                            System.out.println(liniaR + "=" + s.algo(liniaR));
+                            System.out.println(liniaR + " = " + s.algo(liniaR));
 
                     } while (!liniaR.endsWith("end"));
                     //MENU
@@ -35,11 +36,11 @@ public class Main {
                     BufferedReader bufferedReader = new BufferedReader(fileReader);
 
                     while ((linia = bufferedReader.readLine()) != null) {
-                        System.out.println(linia + "=" + s.algo(linia));
+                        System.out.println(linia + " = " + s.algo(linia));
                     }
                     break;
             }
-
+            System.out.println("");
         } while (select != 4);
     }
 }
