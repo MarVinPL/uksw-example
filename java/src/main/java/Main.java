@@ -18,9 +18,12 @@ public class Main {
                 case 1:
                     String liniaR;
                     do {
+
                         liniaR = scanner.nextLine();
-                        System.out.println(liniaR);
-                        //System.out.println(liniaR+"="+s.algo(liniaR));
+                        liniaR.toString().isEmpty();
+                        //System.out.println(liniaR);
+                        //if(liniaR=="")
+                        //System.out.println(liniaR+"=");//+s.algo(liniaR));
 
                     } while (!liniaR.endsWith("end"));
                     //MENU
