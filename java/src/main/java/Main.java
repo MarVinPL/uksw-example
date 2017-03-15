@@ -1,11 +1,34 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        String liczba = "2+5*3";
 
+        int select;
+        do {
+            System.out.println("1 - Wprowadzaj ręcznia");
+            System.out.println("2 - Zpliku algo.txt");
+            System.out.println("4 - KONIEC");
+            Scanner scanner = new Scanner(System.in);
+            select = scanner.nextInt();
+
+            switch (select) {
+                case 1:
+                    System.out.println("1");
+                    do {
+
+                    } while (true != Str.endsWith("end"));
+                    //MENU
+                    break;
+                case 2:
+                    System.out.println("2");
+                    //MENU
+                    break;
+            }
+
+        } while (select != 4);
+
+/*
         System.out.println("");
         System.out.println("");
 
@@ -16,15 +39,13 @@ public class Main {
                 FileReader fileReader = new FileReader(filePath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        String textLine = bufferedReader.readLine();
-        do {
-            System.out.println(textLine + "=" + s.algo(textLine));
+        String linia = " ";
+        while((linia = bufferedReader.readLine()) != null){
+                System.out.println(linia+"="+s.algo(linia));
+            }
 
-            textLine = bufferedReader.readLine();
-        } while (textLine != null);
-
-        bufferedReader.close();
-
+        //s.algo();
+*/
 
     }
 }

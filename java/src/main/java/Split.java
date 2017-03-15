@@ -23,10 +23,10 @@ public class Split extends Operatory {
         for (String A : PossibleAction) {
             while (lista.contains(A)) {
                 int rev = lista.indexOf(A);
-                System.out.print("Index: " + rev + " of: " + A);
+                //System.out.print("Index: " + rev + " of: " + A);
                 double a = Double.parseDouble(lista.get(rev - 1));
                 double b = Double.parseDouble(lista.get(rev + 1));
-                System.out.println(" = " + x);
+                //System.out.println(" = " + x);
                 double r = 0;
                 switch (x) {
                     case 0:
@@ -42,14 +42,14 @@ public class Split extends Operatory {
                         r = subtraction(a, b);
                         break;
                 }
-                eq = String.valueOf(r);
-                lista.set(rev, eq);
+                String eqR = String.valueOf(r);
+                lista.set(rev, eqR);
                 lista.remove(rev + 1);
                 lista.remove(rev - 1);
             }
             x++;
         }
-        return eq;
+        return lista.get(0);
     }
 
 }
