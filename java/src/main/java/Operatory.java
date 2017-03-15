@@ -16,15 +16,27 @@ public class Operatory {
         return (float) a * (float) b;
     }
 
+
+    /**
+     * change to float
+     *
+     * @see java.math.RoundingMode
+     */
     double division(double a, double b) {
         //ORDER MATTERS
         return (float) a / (float) b;
     }
 
+    /**
+     * dont used
+     */
     double square(double a, int n) {
         return Math.sqrt((float) a); //TODO: DODA n
     }
 
+    /**
+     * dont used
+     */
     double exponentiation(double a, int n) {
         return Math.pow((float) a, n);
     }
