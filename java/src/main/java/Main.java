@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) {
 
-        String liczba = "2+3*4/2";
+        String liczba = "3/2+3*4/2";
 
         StringTokenizer Elements = new StringTokenizer(liczba, "+-*/", true);
 
@@ -26,7 +26,7 @@ public class Main {
 
         System.out.println("");
         System.out.println("");
-
+/*
         for (int i = 0; i < lista.size(); i++) {
             //if(element.equals("*"))
             if (lista.get(i).equals("*")) {
@@ -65,9 +65,32 @@ public class Main {
                 lista.remove(i - 1);
             }
         }
-
+*/
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(lista.get(i));
+        }
+
+        System.out.println("");
+        System.out.println("");
+
+        int rev = lista.indexOf("/");
+
+        System.out.println(rev);
+
+        String[] PossibleAction = {"*", "/", "+", "-"};
+
+        for (String A : PossibleAction) {
+            for (int i = 0; i < lista.size(); i++) {
+                if (lista.get(i).equals("+")) {
+                    double a = Double.parseDouble(lista.get(i - 1));
+                    double b = Double.parseDouble(lista.get(i + 1));
+                    double tmp = a + b;
+                    String eq = String.valueOf(tmp);
+                    lista.set(i, eq);
+                    lista.remove(i + 1);
+                    lista.remove(i - 1);
+                }
+            }
         }
 
 //isNumber

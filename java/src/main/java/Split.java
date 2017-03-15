@@ -43,6 +43,8 @@ public class Split {
         //TODO: będzie liczyło w pętli dopuki Index!=0
         //TODO: jak Index==0 to zwraca wynik
 
+        //TODO: Na tym etapie nie uwzględniam nawiasów bo będzie to poporostu traktowane jako fragment stringa z pryiorytetem ale to potem
+
         return eq;
     }
 
