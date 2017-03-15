@@ -10,7 +10,7 @@ public class Main {
         System.out.println("");
         System.out.println("");
 
-        String filePath =
+        String filePath = "src/test.txt";
 
                 FileReader fileReader = new FileReader(filePath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
