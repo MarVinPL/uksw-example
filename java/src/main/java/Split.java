@@ -25,12 +25,26 @@ public class Split extends Operatory {
      */
     String algo(String eq) {
 
-        eq.replaceAll("\\s+", "");
-        eq.replaceAll("\\s", "");
+        eq = eq.replaceAll("\\s+", "");
+        eq = eq.replaceAll("\\s", "");
+        eq = eq.trim();
+
+        /*
+        String[] PossibleChar = {"*", "/", "-", "+", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+        for (int i = 0; i < 14; i++) {
+            for(int k = 0; k<eq.length();k++){
+                String tmp = eq.substring(0, i+1);
+                if(!tmp.contains(PossibleChar[i])){
+            System.out.println("coś");
+        }
+            }
+        }
+        */
+
 
         ArrayList<String> lista = new ArrayList<String>();
 
-        StringTokenizer Elements = new StringTokenizer(eq, "+-*/", true);
+        StringTokenizer Elements = new StringTokenizer(eq, "*/+-", true);
 
         boolean first = true;
         while (Elements.hasMoreElements()) {
@@ -40,27 +54,38 @@ public class Split extends Operatory {
                     lista.add("0");
                 first = false;
             }
+            //jak 0 "*"/"/" a 1 "-" to 2 "-x"
             lista.add(token);
+
+            //System.out.println(token);
         }
 
+        /*
+        "*""-""1" to "*""-1"
+        */
+
         String[] PossibleAction = {"*", "/", "-", "+"};
-        int x = 0;
         for (int i = 0; i < 4; i++) {
             while (lista.contains(PossibleAction[i])) {
                 int rev = lista.indexOf(PossibleAction[i]);
-                //System.out.print("Index: " + rev + " of: " + A);
+
+                if (lista.get(rev + 1).equals("-")) {
+                    lista.remove(rev + 1);
+                    lista.set(rev + 1, "-" + lista.get(rev + 1));
+                    //System.out.println(lista.get(rev+1));
+                }
 
                 double a = Double.parseDouble(lista.get(rev - 1));
                 double b = Double.parseDouble(lista.get(rev + 1));
 //TODO: KTÓRE LEPRZE
-                Double temp = Double.valueOf(lista.get(rev - 1));
-                a = temp.doubleValue();
-                temp = Double.valueOf(lista.get(rev + 1));
-                b = temp.doubleValue();
+                //Double temp = Double.valueOf(lista.get(rev - 1));
+                //a = temp.doubleValue();
+                //temp = Double.valueOf(lista.get(rev + 1));
+                //b = temp.doubleValue();
 
                 //System.out.println(" = " + x);
                 double r = 0;
-                switch (x) {
+                switch (i) {
                     case 0:
                         r = multiplication(a, b);
                         break;
@@ -85,7 +110,6 @@ public class Split extends Operatory {
                 lista.remove(rev + 1);
                 lista.remove(rev - 1);
             }
-            ++x;
         }
         return lista.get(0);
     }
