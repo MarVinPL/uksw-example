@@ -54,10 +54,7 @@ public class Split extends Operatory {
                     lista.add("0");
                 first = false;
             }
-            //jak 0 "*"/"/" a 1 "-" to 2 "-x"
             lista.add(token);
-
-            //System.out.println(token);
         }
 
         /*
