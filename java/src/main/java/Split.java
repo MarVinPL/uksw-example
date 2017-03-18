@@ -29,18 +29,7 @@ public class Split extends Operatory {
         eq = eq.replaceAll("\\s", "");
         eq = eq.trim();
 
-        /*
-        String[] PossibleChar = {"*", "/", "-", "+", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
-        for (int i = 0; i < 14; i++) {
-            for(int k = 0; k<eq.length();k++){
-                String tmp = eq.substring(0, i+1);
-                if(!tmp.contains(PossibleChar[i])){
-            System.out.println("coś");
-        }
-            }
-        }
-        */
-
+        eq = eq.replaceAll("[^0-9*/+-]", "");
 
         ArrayList<String> lista = new ArrayList<String>();
 
